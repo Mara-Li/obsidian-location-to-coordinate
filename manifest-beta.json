@@ -1,10 +1,10 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "location-to-coordinate",
+	"name": "Location To Coordinate",
 	"version": "0.0.0",
 	"minAppVersion": "1.5.12",
-	"description": "This is a sample plugin",
-	"author": "Mara",
-	"authorUrl": "https://github.com/Mara",
+	"description": "Automatically add the coordinate from a given set of properties, and add it in it.",
+	"author": "Mara-Li",
+	"authorUrl": "https://github.com/Mara-Li",
 	"isDesktopOnly": false
 }

@@ -1,10 +1,7 @@
-
-<% if (data.settings === true) { %>
-export interface <%= data.interfaceName %>Settings {
+export interface LocationToCoordinateSettings {
 	mySetting: string;
 }
 
-export const DEFAULT_SETTINGS: <%= data.interfaceName %>Settings = {
-	mySetting: "default"
+export const DEFAULT_SETTINGS: LocationToCoordinateSettings = {
+	mySetting: "default",
 };
-<% } %>
