@@ -1,13 +1,12 @@
-import { Plugin, Modal } from "obsidian";
-
-import { resources, translationLanguage } from "./i18n";
 import i18next from "i18next";
+import { Plugin } from "obsidian";
+import { resources, translationLanguage } from "./i18n";
 
-import { LocationToCoordinateSettings, DEFAULT_SETTINGS } from "./interfaces";
-import { LocationToCoordinateSettingTab } from "./settings";
+import { DEFAULT_SETTINGS, type Settings } from "./interfaces";
+import { SettingTab } from "./settings";
 
 export default class LocationToCoordinate extends Plugin {
-	settings!: LocationToCoordinateSettings;
+	settings!: Settings;
 
 	async onload() {
 		console.log(`[${this.manifest.name}] Loaded`);
@@ -24,7 +23,7 @@ export default class LocationToCoordinate extends Plugin {
 		});
 
 		// This adds a settings tab so the user can configure various aspects of the plugin
-		this.addSettingTab(new LocationToCoordinateSettingTab(this.app, this));
+		this.addSettingTab(new SettingTab(this.app, this));
 	}
 
 	onunload() {

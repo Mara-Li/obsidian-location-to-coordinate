@@ -1,7 +1,7 @@
 import { type App, PluginSettingTab, Setting } from "obsidian";
-import LocationToCoordinate from "./main";
+import type LocationToCoordinate from "./main";
 
-export class LocationToCoordinateSettingTab extends PluginSettingTab {
+export class SettingTab extends PluginSettingTab {
 	plugin: LocationToCoordinate;
 
 	constructor(app: App, plugin: LocationToCoordinate) {
