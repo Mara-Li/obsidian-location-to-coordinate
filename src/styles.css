@@ -1,8 +1,8 @@
-/*
+.loc-to-coord-settings .mode p {
+	margin-top: 0;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
-
-If your plugin does not need CSS, delete this file.
-
-*/
+.loc-to-coord-settings .setting-item.setting-item-heading {
+	text-align: center;
+	display: block;
+}

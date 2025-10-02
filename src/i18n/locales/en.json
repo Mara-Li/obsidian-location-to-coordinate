@@ -1,1 +1,17 @@
-{}
+{
+	"inputKeys": {
+		"header": "Input keys",
+		"mode": {
+			"desc": "Choose between \"simple\" or \"template\" : \n- **Simple** : The entire address in contained in a properties key.\n- **Template** : Recreate the address by using multiple keys. Each keys must be between `{}`, like `{city}, {number}`. The created string will be used to obtain the location.",
+			"name": "Mode",
+			"options": {
+				"simple": "Simple",
+				"template": "Template"
+			}
+		},
+		"simpleKey": {
+			"name": "Key name",
+			"placeholder": "address"
+		}
+	}
+}

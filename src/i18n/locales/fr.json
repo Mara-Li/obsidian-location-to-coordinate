@@ -1,1 +1,17 @@
-{}
+{
+	"inputKeys": {
+		"header": "Clé d'entrée",
+		"mode": {
+			"desc": "Choisissez entre « simple » ou « modèle » : \n- **Simple** : l'adresse entière est contenue dans une clé de propriétés.\n- **Modèle** : recréez l'adresse à l'aide de plusieurs clés. Chaque clé doit être entre `{}`, comme `{city}, {number}`. La chaîne ainsi créée sera utilisée pour obtenir l'emplacement.",
+			"name": "Mode",
+			"options": {
+				"simple": "Simple",
+				"template": "Modèle"
+			}
+		},
+		"simpleKey": {
+			"name": "Nom de la clé",
+			"placeholder": "adresse"
+		}
+	}
+}
