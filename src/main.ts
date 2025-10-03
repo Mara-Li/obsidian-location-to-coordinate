@@ -1,10 +1,10 @@
 import i18next from "i18next";
-import { Plugin } from "obsidian";
+import { Notice, Plugin, type TFile } from "obsidian";
+import { merge } from "ts-deepmerge";
+import { FrontMatterUtils } from "./frontmatter";
 import { resources, translationLanguage } from "./i18n";
-
 import { DEFAULT_SETTINGS, type Settings } from "./interfaces";
 import SettingTab from "./settings";
-import {merge} from "ts-deepmerge";
 
 export default class LocationToCoordinate extends Plugin {
 	settings!: Settings;
@@ -25,6 +25,39 @@ export default class LocationToCoordinate extends Plugin {
 
 		// This adds a settings tab so the user can configure various aspects of the plugin
 		this.addSettingTab(new SettingTab(this.app, this));
+
+		this.addCommand({
+			id: "insert-coordinate-at-file",
+			name: i18next.t("command.insertAtFile"),
+			checkCallback: (checking: boolean) => {
+				const file = this.app.workspace.getActiveFile();
+				const frontmatter = file
+					? this.app.metadataCache.getFileCache(file)?.frontmatter
+					: null;
+				if (file && frontmatter) {
+					if (!checking) {
+						this.insertLocation(file);
+					}
+					return true;
+				}
+				return false;
+			},
+		});
+	}
+
+	async insertLocation(file: TFile) {
+		//get the frontmatter of the file
+		const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
+		if (!frontmatter) return; //fail silently if no frontmatter
+		const fmUtils = new FrontMatterUtils(this.settings, frontmatter, this.app);
+		try {
+			const coord = await fmUtils.extractLocation();
+			console.log(coord);
+			//insert the coordinate into the frontmatter
+			await fmUtils.insertCoordinate(coord, file);
+		} catch (e) {
+			new Notice(`${i18next.t("error")}: ${(e as Error).message}`);
+		}
 	}
 
 	onunload() {
@@ -35,7 +68,7 @@ export default class LocationToCoordinate extends Plugin {
 		//we have nested keys so Object.assign doesn't do a deep merge
 		//this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
 		//we need to do a deep merge with ts-deepmerge
-		this.settings = merge(DEFAULT_SETTINGS, await this.loadData() as Settings);
+		this.settings = merge(DEFAULT_SETTINGS, (await this.loadData()) as Settings);
 	}
 
 	async saveSettings() {

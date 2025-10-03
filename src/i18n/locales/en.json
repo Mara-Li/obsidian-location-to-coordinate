@@ -1,4 +1,8 @@
 {
+	"command": {
+		"insertAtFile": "Enter the coordinates for the current file"
+	},
+	"error": "An error occured: {{- error}}",
 	"inputKeys": {
 		"desc": "Choose between \"simple\" or \"template\" : \n- **Simple** : The entire address in contained in a properties key.\n- **Template** : Recreate the address by using multiple keys.",
 		"header": "Input keys",
@@ -14,6 +18,9 @@
 		"placeholder": "longitude"
 	},
 	"mode": "Mode",
+	"notice": {
+		"success": "Success"
+	},
 	"object": {
 		"desc": "Ensures that the dot allows you to select a key within an object (nested key). ",
 		"name": "Object (nested key support)"

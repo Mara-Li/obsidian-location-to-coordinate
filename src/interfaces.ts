@@ -12,8 +12,8 @@ export interface Settings {
 		 * If true, the `.` in the template will be replaced by the `inputKeys.template` value.
 		 */
 		object: boolean;
-	},
-	outputFormat : {
+	};
+	outputFormat: {
 		/**
 		 * If true, the `.` in the outputFormat will be replaced by the `outputFormat.keyName` value.
 		 */
@@ -30,8 +30,8 @@ export interface Settings {
 		template: {
 			key: string;
 			value: string;
-		}
-	}
+		};
+	};
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -39,18 +39,23 @@ export const DEFAULT_SETTINGS: Settings = {
 		mode: "simple",
 		simpleKey: "address",
 		object: false,
-		template: "{address}, {city}, {state}"
+		template: "{address}, {city}, {state}",
 	},
 	outputFormat: {
 		object: false,
 		mode: "simple",
 		simpleKey: {
 			latitude: "latitude",
-			longitude: "longitude"
+			longitude: "longitude",
 		},
 		template: {
 			key: "coordinates",
-			value: "{latitude}, {longitude}"
-		}
-	}
+			value: "{latitude}, {longitude}",
+		},
+	},
+};
+
+export type Coordinate = {
+	latitude: number;
+	longitude: number;
 };

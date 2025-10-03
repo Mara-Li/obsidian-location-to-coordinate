@@ -1,4 +1,8 @@
 {
+	"command": {
+		"insertAtFile": "Insérer les coordonnées pour le fichier actuel"
+	},
+	"error": "Une erreur s'est produite : {{- error}}",
 	"inputKeys": {
 		"desc": "Choisissez entre « simple » ou « modèle » : \n- **Simple** : l'adresse entière est contenue dans une clé de propriétés.\n- **Modèle** : recréez l'adresse à l'aide de plusieurs clés.",
 		"header": "Clé d'entrée",
@@ -14,6 +18,9 @@
 		"placeholder": "longitude"
 	},
 	"mode": "Mode",
+	"notice": {
+		"success": "Succès"
+	},
 	"object": {
 		"desc": "Fait en sorte que le point permettent de sélectionner une clé au sein d'un objet (clé imbriquée). ",
 		"name": "Objet (support des clés imbriquées)"
