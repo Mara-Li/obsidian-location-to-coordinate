@@ -65,10 +65,11 @@ export default class LocationToCoordinate extends Plugin {
 	}
 
 	async loadSettings() {
-		//we have nested keys so Object.assign doesn't do a deep merge
-		//this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
-		//we need to do a deep merge with ts-deepmerge
-		this.settings = merge(DEFAULT_SETTINGS, (await this.loadData()) as Settings);
+		const data = (await this.loadData()) as Settings | null | undefined;
+		this.settings = merge(
+			DEFAULT_SETTINGS,
+			(data ?? {}) as Partial<Settings>
+		) as Settings;
 	}
 
 	async saveSettings() {
