@@ -5,6 +5,7 @@ import { FrontMatterUtils } from "./frontmatter";
 import { resources, translationLanguage } from "./i18n";
 import { DEFAULT_SETTINGS, type Settings } from "./interfaces";
 import SettingTab from "./settings";
+import { SelectFolderModal } from "./select_folder";
 
 export default class LocationToCoordinate extends Plugin {
 	settings!: Settings;
@@ -78,6 +79,33 @@ export default class LocationToCoordinate extends Plugin {
 				}
 				notice.setMessage(i18next.t("done"));
 				setTimeout(() => notice.hide(), 2000);
+			},
+		});
+
+		this.addCommand({
+			id: "insert-coordinate-in-all-files-no-notice",
+			name: i18next.t("command.insertInSpecificFolder"),
+			callback: async () => {
+				new SelectFolderModal(this.app, async (folder) => {
+					//get the markdown files in the folder
+					const children = folder.children.filter((f) => f instanceof TFile) as TFile[];
+					const total = children.length;
+					if (total === 0) {
+						new Notice(i18next.t("noFilesInFolder"));
+						return;
+					}
+					let processed = 0;
+					const notice = new Notice(i18next.t("processing"), 0);
+					for (const file of children) {
+						processed++;
+						notice.setMessage(
+							i18next.t("processingFile", { progress: `${processed}/${total}` })
+						);
+						await this.insertLocation(file);
+					}
+					notice.setMessage(i18next.t("done"));
+					setTimeout(() => notice.hide(), 2000);
+				});
 			},
 		});
 	}

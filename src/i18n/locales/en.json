@@ -1,7 +1,8 @@
 {
 	"command": {
 		"insertAtFile": "Enter the coordinates for the current file",
-		"insertInAllFiles": "Enter the coordinates for all files"
+		"insertInAllFiles": "Enter the coordinates for all files",
+		"insertInSpecificFolder": "cmd spe folder"
 	},
 	"done": "done",
 	"error": "An error occured: {{- error}}",
@@ -20,6 +21,7 @@
 		"placeholder": "longitude"
 	},
 	"mode": "Mode",
+	"noFilesInFolder": "There are no file in this folder.",
 	"notice": {
 		"success": "Success"
 	},
