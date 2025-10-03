@@ -22,13 +22,15 @@ export interface Settings {
 		 * If "simple", will use two keys: `latitude` and `longitude`.
 		 * If multiple, allow to use one keys for the coordinate, in the form of a template: `{latitude}, {longitude}`.
 		 */
-		mode: "simple" | "multiple";
+		mode: "simple" | "template";
 		simpleKey: {
 			latitude: string;
 			longitude: string;
 		};
-		multipleKey: string;
-		
+		template: {
+			key: string;
+			value: string;
+		}
 	}
 }
 
@@ -46,6 +48,9 @@ export const DEFAULT_SETTINGS: Settings = {
 			latitude: "latitude",
 			longitude: "longitude"
 		},
-		multipleKey: "{latitude}, {longitude}"
+		template: {
+			key: "coordinates",
+			value: "{latitude}, {longitude}"
+		}
 	}
 };

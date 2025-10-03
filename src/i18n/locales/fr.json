@@ -1,17 +1,32 @@
 {
 	"inputKeys": {
+		"desc": "Choisissez entre « simple » ou « modèle » : \n- **Simple** : l'adresse entière est contenue dans une clé de propriétés.\n- **Modèle** : recréez l'adresse à l'aide de plusieurs clés.",
 		"header": "Clé d'entrée",
-		"mode": {
-			"desc": "Choisissez entre « simple » ou « modèle » : \n- **Simple** : l'adresse entière est contenue dans une clé de propriétés.\n- **Modèle** : recréez l'adresse à l'aide de plusieurs clés. Chaque clé doit être entre `{}`, comme `{city}, {number}`. La chaîne ainsi créée sera utilisée pour obtenir l'emplacement.",
-			"name": "Mode",
-			"options": {
-				"simple": "Simple",
-				"template": "Modèle"
-			}
-		},
-		"simpleKey": {
-			"name": "Nom de la clé",
-			"placeholder": "adresse"
-		}
-	}
+		"template": "Chaque clé doit être entre `{}`, comme `{city}, {number}`. La chaîne créée sera utilisée pour obtenir l'emplacement."
+	},
+	"keyName": "Nom de la clé",
+	"latitude": {
+		"name": "Latitude",
+		"placeholder": "latitude"
+	},
+	"longitude": {
+		"name": "Longitude",
+		"placeholder": "longitude"
+	},
+	"mode": "Mode",
+	"object": {
+		"desc": "Fait en sorte que le point permettent de sélectionner une clé au sein d'un objet (clé imbriquée). ",
+		"name": "Objet (support des clés imbriquées)"
+	},
+	"outputFormat": {
+		"desc": "Choisissez comment le résultat sera enregistrés dans les propriétés :\n- **Simple** : Les données seront enregistrés dans deux clés différentes sous forme de nombre.\n- **Modèle** : Les deux coordonnées seront sauvegardés dans une seule clés sous forme de template.",
+		"header": "Clé de sortie",
+		"keyName": "coordonnées",
+		"template": "Utiliser les placeholder {{- code.longitude}} et {{- code.latitude}} pour former le modèle."
+	},
+	"simple": "Simple",
+	"simpleKey": {
+		"placeholder": "adresse"
+	},
+	"template": "Modèle"
 }

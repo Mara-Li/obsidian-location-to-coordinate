@@ -1,17 +1,32 @@
 {
 	"inputKeys": {
+		"desc": "Choose between \"simple\" or \"template\" : \n- **Simple** : The entire address in contained in a properties key.\n- **Template** : Recreate the address by using multiple keys.",
 		"header": "Input keys",
-		"mode": {
-			"desc": "Choose between \"simple\" or \"template\" : \n- **Simple** : The entire address in contained in a properties key.\n- **Template** : Recreate the address by using multiple keys. Each keys must be between `{}`, like `{city}, {number}`. The created string will be used to obtain the location.",
-			"name": "Mode",
-			"options": {
-				"simple": "Simple",
-				"template": "Template"
-			}
-		},
-		"simpleKey": {
-			"name": "Key name",
-			"placeholder": "address"
-		}
-	}
+		"template": "Each keys must be between `{}`, like `{city}, {number}`. The created string will be used to obtain the location."
+	},
+	"keyName": "Key name",
+	"latitude": {
+		"name": "Latitude",
+		"placeholder": "latitude"
+	},
+	"longitude": {
+		"name": "Longitude",
+		"placeholder": "longitude"
+	},
+	"mode": "Mode",
+	"object": {
+		"desc": "Ensures that the dot allows you to select a key within an object (nested key). ",
+		"name": "Object (nested key support)"
+	},
+	"outputFormat": {
+		"desc": "Choose how the result will be saved in the properties:\n- **Simple**: The data will be saved in two different keys as numbers.\n- **Template**: Both coordinates will be saved in a single key as a template.",
+		"header": "Output keys",
+		"keyName": "coordinate",
+		"template": "Use the placeholders {{- code.longitude}} and {{- code.latitude}} to form the template."
+	},
+	"simple": "Simple",
+	"simpleKey": {
+		"placeholder": "address"
+	},
+	"template": "Template"
 }
