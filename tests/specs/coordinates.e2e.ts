@@ -21,14 +21,42 @@ async function getFrontmatter(filePathInVault: string) {
 	}, filePathInVault);
 }
 
+async function ensurePluginReady() {
+	// Wait until plugin is loaded and command is registered
+	await browser.waitUntil(
+		async () =>
+			await browser.executeObsidian(({ app }, pluginId) => {
+				const plugin: any = app.plugins.getPlugin(pluginId);
+				const hasSettings = !!plugin && !!plugin.settings;
+				const cmdId = `${pluginId}:insert-coordinate-at-file`;
+				const hasCommand =
+					!!(app as any).commands?.commands?.[cmdId] ||
+					(app as any).commands.listCommands().some((c: any) => c.id === cmdId);
+				return hasSettings && hasCommand;
+			}, manifest.id),
+		{ timeout: 30000, interval: 250 }
+	);
+}
+
+async function openAsActiveFile(filePathInVault: string) {
+	await browser.executeObsidian(async ({ app, obsidian }, filePath) => {
+		const file = app.vault.getAbstractFileByPath(filePath);
+		if (!(file instanceof obsidian.TFile)) throw new Error(`No file ${filePath}`);
+		const leaf = app.workspace.getLeaf(true);
+		await leaf.openFile(file);
+		(app.workspace as any).setActiveLeaf?.(leaf, true, true);
+	}, filePathInVault);
+}
+
 describe("Coordinates insertion", function () {
 	beforeEach(async function () {
 		await obsidianPage.resetVault();
+		await ensurePluginReady();
 	});
 
 	it("should insert lat/lon in simple mode (default) for places/simple.md", async function () {
 		const filePath = "places/simple.md";
-		await obsidianPage.openFile(filePath);
+		await openAsActiveFile(filePath);
 
 		await browser.executeObsidianCommand(`${manifest.id}:insert-coordinate-at-file`);
 
@@ -55,6 +83,7 @@ describe("Coordinates insertion", function () {
 	});
 
 	it("should support template input and nested output keys", async function () {
+		await ensurePluginReady();
 		// Switch to template input and nested output keys
 		await browser.executeObsidian(({ app }, pluginId) => {
 			const plugin: any = app.plugins.getPlugin(pluginId);
@@ -69,7 +98,7 @@ describe("Coordinates insertion", function () {
 		}, manifest.id);
 
 		const filePath = "places/template.md";
-		await obsidianPage.openFile(filePath);
+		await openAsActiveFile(filePath);
 		await browser.executeObsidianCommand(`${manifest.id}:insert-coordinate-at-file`);
 
 		await browser.waitUntil(
