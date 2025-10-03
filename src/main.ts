@@ -3,7 +3,8 @@ import { Plugin } from "obsidian";
 import { resources, translationLanguage } from "./i18n";
 
 import { DEFAULT_SETTINGS, type Settings } from "./interfaces";
-import { SettingTab } from "./settings";
+import SettingTab from "./settings";
+import {merge} from "ts-deepmerge";
 
 export default class LocationToCoordinate extends Plugin {
 	settings!: Settings;
@@ -31,7 +32,10 @@ export default class LocationToCoordinate extends Plugin {
 	}
 
 	async loadSettings() {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+		//we have nested keys so Object.assign doesn't do a deep merge
+		//this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+		//we need to do a deep merge with ts-deepmerge
+		this.settings = merge(DEFAULT_SETTINGS, await this.loadData() as Settings);
 	}
 
 	async saveSettings() {
