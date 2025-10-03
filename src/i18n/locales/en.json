@@ -1,7 +1,9 @@
 {
 	"command": {
-		"insertAtFile": "Enter the coordinates for the current file"
+		"insertAtFile": "Enter the coordinates for the current file",
+		"insertInAllFiles": "Enter the coordinates for all files"
 	},
+	"done": "done",
 	"error": "An error occured: {{- error}}",
 	"inputKeys": {
 		"desc": "Choose between \"simple\" or \"template\" : \n- **Simple** : The entire address in contained in a properties key.\n- **Template** : Recreate the address by using multiple keys.",
@@ -31,6 +33,8 @@
 		"keyName": "coordinate",
 		"template": "Use the placeholders {{- code.longitude}} and {{- code.latitude}} to form the template."
 	},
+	"processing": "processing",
+	"processingFile": "Loading {{- progress}}",
 	"simple": "Simple",
 	"simpleKey": {
 		"placeholder": "address"

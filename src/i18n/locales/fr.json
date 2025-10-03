@@ -1,7 +1,9 @@
 {
 	"command": {
-		"insertAtFile": "Insérer les coordonnées pour le fichier actuel"
+		"insertAtFile": "Insérer les coordonnées pour le fichier actuel",
+		"insertInAllFiles": "Entrer les coordonnées pour tous les fichiers"
 	},
+	"done": "Fini",
 	"error": "Une erreur s'est produite : {{- error}}",
 	"inputKeys": {
 		"desc": "Choisissez entre « simple » ou « modèle » : \n- **Simple** : l'adresse entière est contenue dans une clé de propriétés.\n- **Modèle** : recréez l'adresse à l'aide de plusieurs clés.",
@@ -31,6 +33,8 @@
 		"keyName": "coordonnées",
 		"template": "Utiliser les placeholder {{- code.longitude}} et {{- code.latitude}} pour former le modèle."
 	},
+	"processing": "Chargement",
+	"processingFile": "Chargement {{- progress}}",
 	"simple": "Simple",
 	"simpleKey": {
 		"placeholder": "adresse"

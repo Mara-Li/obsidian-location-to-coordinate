@@ -1,5 +1,5 @@
 import i18next from "i18next";
-import { Notice, Plugin, type TFile } from "obsidian";
+import { Notice, Plugin, TFile } from "obsidian";
 import { merge } from "ts-deepmerge";
 import { FrontMatterUtils } from "./frontmatter";
 import { resources, translationLanguage } from "./i18n";
@@ -43,6 +43,43 @@ export default class LocationToCoordinate extends Plugin {
 				return false;
 			},
 		});
+
+		this.registerEvent(
+			this.app.workspace.on("file-menu", (menu, file) => {
+				if (!(file instanceof TFile)) return; //only files
+				const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
+				if (!frontmatter) return; //fail silently if no frontmatter
+				menu.addItem((item) => {
+					item.setTitle(i18next.t("command.insertAtFile"));
+					item.setIcon("map-pin");
+					item.onClick(() => this.insertLocation(file));
+				});
+			})
+		);
+
+		/**
+		 * Process all files in the vault
+		 */
+		this.addCommand({
+			id: "insert-coordinate-in-all-files",
+			name: i18next.t("command.insertInAllFiles"),
+			callback: async () => {
+				const files = this.app.vault.getMarkdownFiles();
+				const totalFiles = files.length;
+				let processedFiles = 0;
+				//create a loading notice
+				const notice = new Notice(i18next.t("processing"), 0);
+				for (const file of files) {
+					processedFiles++;
+					notice.setMessage(
+						i18next.t("processingFile", { progress: `${processedFiles}/${totalFiles}` })
+					);
+					await this.insertLocation(file);
+				}
+				notice.setMessage(i18next.t("done"));
+				setTimeout(() => notice.hide(), 2000);
+			},
+		});
 	}
 
 	async insertLocation(file: TFile) {
@@ -56,6 +93,7 @@ export default class LocationToCoordinate extends Plugin {
 			//insert the coordinate into the frontmatter
 			await fmUtils.insertCoordinate(coord, file);
 		} catch (e) {
+			console.error(e);
 			new Notice(`${i18next.t("error")}: ${(e as Error).message}`);
 		}
 	}
