@@ -2,7 +2,7 @@
 	"command": {
 		"insertAtFile": "Enter the coordinates for the current file",
 		"insertInAllFiles": "Enter the coordinates for all files",
-		"insertInSpecificFolder": "cmd spe folder"
+		"insertInSpecificFolder": "Insert the coordinates for a specific selected folder"
 	},
 	"done": "done",
 	"error": "An error occured:",

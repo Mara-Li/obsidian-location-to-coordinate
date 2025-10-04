@@ -2,7 +2,7 @@
 	"command": {
 		"insertAtFile": "Insérer les coordonnées pour le fichier actuel",
 		"insertInAllFiles": "Entrer les coordonnées pour tous les fichiers",
-		"insertInSpecificFolder": "cmd spe folder"
+		"insertInSpecificFolder": "Entrer les coordonnées d'un dossier spécifique sélectionné"
 	},
 	"done": "Fini",
 	"error": "Une erreur s'est produite :",

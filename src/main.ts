@@ -83,7 +83,7 @@ export default class LocationToCoordinate extends Plugin {
 		});
 
 		this.addCommand({
-			id: "insert-coordinate-in-all-files-no-notice",
+			id: "insert-coordinate-in-selected-folder",
 			name: i18next.t("command.insertInSpecificFolder"),
 			callback: async () => {
 				new SelectFolderModal(this.app, async (folder) => {

@@ -125,6 +125,21 @@ The plugin settings have two main sections.
   - Only available when the active note has YAML frontmatter.
   - On success, coordinates are added/updated in frontmatter according to your output settings.
 
+- Enter the coordinates for all files
+  - Processes every Markdown file in your vault.
+  - For each file with YAML frontmatter, coordinates are added/updated according to your output settings.
+  - Progress is shown in a notice during the operation.
+
+- Enter the coordinates for all files in a specific folder
+  - Lets you select a folder; all Markdown files in that folder are processed.
+  - For each file with YAML frontmatter, coordinates are added/updated according to your output settings.
+
+### Strict mode
+- When enabled in the Input keys settings, strict mode requires all template fields to be present and non-empty in the frontmatter.
+- If any required field is missing or empty, the command will not send a geocoding request and will not update the coordinates.
+- This ensures only notes with complete location information are processed.
+
+
 ## How it works (under the hood)
 - The plugin reads your note’s frontmatter to build a location string (Simple or Template).
 - It sends one request to OpenStreetMap Nominatim to fetch coordinates for that location.
