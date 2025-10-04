@@ -29,7 +29,7 @@ export class FrontMatterUtils {
 		const regex = /{([^}]+)}/g;
 		let match;
 		// biome-ignore lint/suspicious/noAssignInExpressions: easy way to loop through all matches
-		while ((match = regex.exec(template)) !== null) {
+		while ((match = regex.exec(this.settings.inputKeys.template)) !== null) {
 			const placeholder = match[0]; // e.g., "{address}"
 			const key = match[1];
 			let value: string | null = null;
@@ -42,9 +42,8 @@ export class FrontMatterUtils {
 			template = template.replace(placeholder, value);
 		}
 		//if after replacing, there is still { or }, return null
-		if (template.includes("{") || template.includes("}")) {
-			throw new Error("Invalid template, some placeholders were not replaced.");
-		}
+		if (template.includes("{") || template.includes("}")) return null; //incomplete template or missing keys
+
 		return template.trim() === "" ? null : template;
 	}
 

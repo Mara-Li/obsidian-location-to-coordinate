@@ -4,8 +4,8 @@ import { merge } from "ts-deepmerge";
 import { FrontMatterUtils } from "./frontmatter";
 import { resources, translationLanguage } from "./i18n";
 import { DEFAULT_SETTINGS, type Settings } from "./interfaces";
-import SettingTab from "./settings";
 import { SelectFolderModal } from "./select_folder";
+import SettingTab from "./settings";
 
 export default class LocationToCoordinate extends Plugin {
 	settings!: Settings;
@@ -53,7 +53,7 @@ export default class LocationToCoordinate extends Plugin {
 				menu.addItem((item) => {
 					item.setTitle(i18next.t("command.insertAtFile"));
 					item.setIcon("map-pin");
-					item.onClick(() => this.insertLocation(file));
+					item.onClick(() => this.insertLocation(file, true));
 				});
 			})
 		);
@@ -75,7 +75,7 @@ export default class LocationToCoordinate extends Plugin {
 					notice.setMessage(
 						i18next.t("processingFile", { progress: `${processedFiles}/${totalFiles}` })
 					);
-					await this.insertLocation(file);
+					await this.insertLocation(file, true);
 				}
 				notice.setMessage(i18next.t("done"));
 				setTimeout(() => notice.hide(), 2000);
@@ -101,16 +101,16 @@ export default class LocationToCoordinate extends Plugin {
 						notice.setMessage(
 							i18next.t("processingFile", { progress: `${processed}/${total}` })
 						);
-						await this.insertLocation(file);
+						await this.insertLocation(file, true);
 					}
 					notice.setMessage(i18next.t("done"));
 					setTimeout(() => notice.hide(), 2000);
-				});
+				}).open();
 			},
 		});
 	}
 
-	async insertLocation(file: TFile) {
+	async insertLocation(file: TFile, silent?: boolean): Promise<void> {
 		//get the frontmatter of the file
 		const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
 		if (!frontmatter) return; //fail silently if no frontmatter
@@ -122,7 +122,7 @@ export default class LocationToCoordinate extends Plugin {
 			await fmUtils.insertCoordinate(coord, file);
 		} catch (e) {
 			console.error(e);
-			new Notice(`${i18next.t("error")}: ${(e as Error).message}`);
+			if (!silent) new Notice(`${i18next.t("error")} ${(e as Error).message}`);
 		}
 	}
 

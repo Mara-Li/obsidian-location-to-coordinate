@@ -5,7 +5,7 @@
 		"insertInSpecificFolder": "cmd spe folder"
 	},
 	"done": "Fini",
-	"error": "Une erreur s'est produite : {{- error}}",
+	"error": "Une erreur s'est produite :",
 	"inputKeys": {
 		"desc": "Choisissez entre « simple » ou « modèle » : \n- **Simple** : l'adresse entière est contenue dans une clé de propriétés.\n- **Modèle** : recréez l'adresse à l'aide de plusieurs clés.",
 		"header": "Clé d'entrée",

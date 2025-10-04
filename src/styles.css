@@ -6,3 +6,10 @@
 	text-align: center;
 	display: block;
 }
+
+.loc-to-coord-settings textarea {
+	width: 20em;
+	height: 100px;
+	resize: vertical;
+	font-family: var(--font-monospace);
+}

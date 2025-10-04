@@ -5,7 +5,7 @@
 		"insertInSpecificFolder": "cmd spe folder"
 	},
 	"done": "done",
-	"error": "An error occured: {{- error}}",
+	"error": "An error occured:",
 	"inputKeys": {
 		"desc": "Choose between \"simple\" or \"template\" : \n- **Simple** : The entire address in contained in a properties key.\n- **Template** : Recreate the address by using multiple keys.",
 		"header": "Input keys",
