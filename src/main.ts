@@ -7,7 +7,7 @@ import { DEFAULT_SETTINGS, type Settings } from "./interfaces";
 import { SelectFolderModal } from "./select_folder";
 import SettingTab from "./settings";
 
-export default class LocationToCoordinate extends Plugin {
+export default class Geocoder extends Plugin {
 	settings!: Settings;
 
 	async onload() {
@@ -66,19 +66,7 @@ export default class LocationToCoordinate extends Plugin {
 			name: i18next.t("command.insertInAllFiles"),
 			callback: async () => {
 				const files = this.app.vault.getMarkdownFiles();
-				const totalFiles = files.length;
-				let processedFiles = 0;
-				//create a loading notice
-				const notice = new Notice(i18next.t("processing"), 0);
-				for (const file of files) {
-					processedFiles++;
-					notice.setMessage(
-						i18next.t("processingFile", { progress: `${processedFiles}/${totalFiles}` })
-					);
-					await this.insertLocation(file, true);
-				}
-				notice.setMessage(i18next.t("done"));
-				setTimeout(() => notice.hide(), 2000);
+				await this.processFiles(files);
 			},
 		});
 
@@ -89,22 +77,11 @@ export default class LocationToCoordinate extends Plugin {
 				new SelectFolderModal(this.app, async (folder) => {
 					//get the markdown files in the folder
 					const children = folder.children.filter((f) => f instanceof TFile) as TFile[];
-					const total = children.length;
-					if (total === 0) {
+					if (children.length === 0) {
 						new Notice(i18next.t("noFilesInFolder"));
 						return;
 					}
-					let processed = 0;
-					const notice = new Notice(i18next.t("processing"), 0);
-					for (const file of children) {
-						processed++;
-						notice.setMessage(
-							i18next.t("processingFile", { progress: `${processed}/${total}` })
-						);
-						await this.insertLocation(file, true);
-					}
-					notice.setMessage(i18next.t("done"));
-					setTimeout(() => notice.hide(), 2000);
+					await this.processFiles(children);
 				}).open();
 			},
 		});
@@ -114,16 +91,31 @@ export default class LocationToCoordinate extends Plugin {
 		//get the frontmatter of the file
 		const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
 		if (!frontmatter) return; //fail silently if no frontmatter
-		const fmUtils = new FrontMatterUtils(this.settings, frontmatter, this.app);
+		const fmUtils = new FrontMatterUtils(frontmatter, this);
 		try {
 			const coord = await fmUtils.extractLocation();
-			console.log(coord);
 			//insert the coordinate into the frontmatter
 			await fmUtils.insertCoordinate(coord, file);
 		} catch (e) {
 			console.error(e);
 			if (!silent) new Notice(`${i18next.t("error")} ${(e as Error).message}`);
 		}
+	}
+
+	private async processFiles(files: TFile[]): Promise<void> {
+		const total = files.length;
+		let processed = 0;
+		const notice = new Notice(i18next.t("processing"), 0);
+		const tasks = files.map(async (file) => {
+			await this.insertLocation(file, true);
+			processed++;
+			notice.setMessage(
+				i18next.t("processingFile", { progress: `${processed}/${total}` })
+			);
+		});
+		await Promise.all(tasks);
+		notice.setMessage(i18next.t("done"));
+		setTimeout(() => notice.hide(), 2000);
 	}
 
 	onunload() {

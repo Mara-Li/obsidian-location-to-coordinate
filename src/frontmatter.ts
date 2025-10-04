@@ -1,18 +1,21 @@
 /**
  * Utilities function to handle frontmatter in markdown files.
  */
-import type { App, FrontMatterCache, TFile } from "obsidian";
+import type { App, FrontMatterCache, PluginManifest, TFile } from "obsidian";
 import type { Coordinate, Settings } from "./interfaces";
+import type Geocoder from "./main";
 import { getCoordinate, getNestedKey } from "./utils";
 
 export class FrontMatterUtils {
 	settings: Settings;
 	frontmatter: FrontMatterCache;
 	app: App;
-	constructor(settings: Settings, frontmatter: FrontMatterCache, app: App) {
-		this.settings = settings;
+	manifest: PluginManifest;
+	constructor(frontmatter: FrontMatterCache, plugin: Geocoder) {
 		this.frontmatter = frontmatter;
-		this.app = app;
+		this.app = plugin.app;
+		this.manifest = plugin.manifest;
+		this.settings = plugin.settings;
 	}
 
 	private getSimpleKey(): string | null {
@@ -58,7 +61,7 @@ export class FrontMatterUtils {
 		const location = this.getLocation();
 		if (!location) throw new Error("Location not found in frontmatter.");
 		//get the coordinate from nominatim
-		const res = await getCoordinate(location);
+		const res = await getCoordinate(location, this.manifest);
 		if (!res) throw new Error("Unable to get coordinate from location.");
 		return res;
 	}

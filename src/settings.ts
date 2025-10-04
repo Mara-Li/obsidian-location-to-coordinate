@@ -6,15 +6,15 @@ import {
 	Setting,
 	sanitizeHTMLToDom,
 } from "obsidian";
-import type LocationToCoordinate from "./main";
+import type Geocoder from "./main";
 import "./i18n/obsidian-i18n";
 import dedent from "dedent";
 import i18next from "i18next";
 
 class SettingTab extends PluginSettingTab {
-	plugin: LocationToCoordinate;
+	plugin: Geocoder;
 
-	constructor(app: App, plugin: LocationToCoordinate) {
+	constructor(app: App, plugin: Geocoder) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}

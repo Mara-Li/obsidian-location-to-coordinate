@@ -1,4 +1,4 @@
-# Location To Coordinate
+# Geocoder
 
 Fetch geographic coordinates (latitude and longitude) from a location described in your note’s frontmatter, then write the result back into the frontmatter.
 
@@ -11,7 +11,7 @@ Fetch geographic coordinates (latitude and longitude) from a location described 
 ## Quick start
 
 1) Ensure your Markdown file has YAML frontmatter and contains address information (either as one field or multiple fields).
-2) Open the settings for “Location To Coordinate” and configure:
+2) Open the settings for “Geocoder” and configure:
    - Input keys (Simple or Template)
    - Output keys (Simple or Template)
    - Whether you use nested keys (Object toggle)
