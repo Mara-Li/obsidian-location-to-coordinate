@@ -18,27 +18,28 @@
 ### Install
 
 ```bash
-npm install
+bun install
 ```
 
 ### Dev (watch)
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 ### Production build
 
 ```bash
-npm run build
+bun run build
 ```
 
 ## Linting
 
-- To use eslint install eslint from terminal: `npm install -g eslint`
-- To use eslint to analyze this project use this command: `eslint main.ts`
+- To use eslint install eslint from terminal: `bun install -g @biomejs/biome`
+- To install the configuration for this project run: `biome init`
+- To use biome to analyze this project use this command: `biome check main.ts`
 - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder: `eslint ./src/`
+- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder: `biome check ./src/`
 
 ## File & folder conventions
 
