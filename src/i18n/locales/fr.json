@@ -41,5 +41,9 @@
 	"simpleKey": {
 		"placeholder": "adresse"
 	},
+	"strict": {
+		"desc": "Les clés manquantes dans le modèle seront effacés plutôt que de renvoyer une erreur.",
+		"name": "Mode strict"
+	},
 	"template": "Modèle"
 }

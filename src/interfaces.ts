@@ -12,6 +12,10 @@ export interface Settings {
 		 * If true, the `.` in the template will be replaced by the `inputKeys.template` value.
 		 */
 		object: boolean;
+		/**
+		 * If false, the {key} that are missing in the frontmatter will removed instead of returning null.
+		 */
+		strict: boolean;
 	};
 	outputFormat: {
 		/**
@@ -40,6 +44,7 @@ export const DEFAULT_SETTINGS: Settings = {
 		simpleKey: "address",
 		object: false,
 		template: "{address}, {city}, {state}",
+		strict: true,
 	},
 	outputFormat: {
 		object: false,

@@ -75,6 +75,17 @@ class SettingTab extends PluginSettingTab {
 							await this.plugin.saveSettings();
 						})
 				);
+			new Setting(containerEl)
+				.setNames("strict.name")
+				.setDescs("strict.desc")
+				.addToggle((toggle) =>
+					toggle
+						.setValue(this.plugin.settings.inputKeys.strict)
+						.onChange(async (value) => {
+							this.plugin.settings.inputKeys.strict = value;
+							await this.plugin.saveSettings();
+						})
+				);
 		}
 		new Setting(containerEl)
 			.setNames("object.name")

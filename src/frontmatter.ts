@@ -42,8 +42,10 @@ export class FrontMatterUtils {
 			template = template.replace(placeholder, value);
 		}
 		//if after replacing, there is still { or }, return null
-		if (template.includes("{") || template.includes("}")) return null; //incomplete template or missing keys
-
+		if (template.includes("{") || template.includes("}")) {
+			if (this.settings.inputKeys.strict) return null;
+			else template = template.replace(/{[^}]+}/g, "");
+		}
 		return template.trim() === "" ? null : template;
 	}
 
