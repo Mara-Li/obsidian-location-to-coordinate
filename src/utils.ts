@@ -16,7 +16,10 @@ export function getNestedKey(key: string, obj: Record<string, any>): any {
 export async function getCoordinate(location: string): Promise<Coordinate | null> {
 	//use obsidian requestUrl to get the coordinate from nominatim
 	const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&q=${encodeURIComponent(location)}&addressdetails=1&limit=1`;
-	const response = await requestUrl(url);
+	const response = await requestUrl({
+		url,
+		headers: { "User-Agent": `Obsidian Location to Coordinate Plugin` },
+	});
 	if (!response.status || response.status !== 200) {
 		throw new Error(
 			`Error fetching data from Nominatim: ${response.status} ${response.status}`

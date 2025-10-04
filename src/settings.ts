@@ -65,7 +65,11 @@ class SettingTab extends PluginSettingTab {
 		} else {
 			new Setting(containerEl)
 				.setNames("template")
-				.setDesc(sanitizeHTMLToDom(`${i18next.t("inputKeys.template")}`))
+				.setDesc(
+					sanitizeHTMLToDom(
+						`${i18next.t("inputKeys.template", { link: '<a href="https://nominatim.org/release-docs/latest/api/Search/#free-form-query" target="_blank" rel="noopener">Nominatim</a>' })}<br><br>${i18next.t("inputKeys.nominatim")}`
+					)
+				)
 				.addTextArea((text) =>
 					text
 						.setValue(this.plugin.settings.inputKeys.template)

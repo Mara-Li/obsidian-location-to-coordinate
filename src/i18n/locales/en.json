@@ -9,7 +9,8 @@
 	"inputKeys": {
 		"desc": "Choose between \"simple\" or \"template\" : \n- **Simple** : The entire address in contained in a properties key.\n- **Template** : Recreate the address by using multiple keys.",
 		"header": "Input keys",
-		"template": "Each keys must be between `{}`, like `{city}, {number}`. The created string will be used to obtain the location."
+		"nominatim": "This means that keys can be unstructured, can contain descriptions of the location, and queries are processed from left to right and from right to left if the first one fails. Commas are optional, but improve performance.",
+		"template": "Each keys must be between `{}`, like `{city}, {number}`. The created string will be used to obtain the location for {{- link}} as a free-form query."
 	},
 	"keyName": "Key name",
 	"latitude": {

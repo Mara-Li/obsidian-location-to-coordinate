@@ -9,7 +9,8 @@
 	"inputKeys": {
 		"desc": "Choisissez entre « simple » ou « modèle » : \n- **Simple** : l'adresse entière est contenue dans une clé de propriétés.\n- **Modèle** : recréez l'adresse à l'aide de plusieurs clés.",
 		"header": "Clé d'entrée",
-		"template": "Chaque clé doit être entre `{}`, comme `{city}, {number}`. La chaîne créée sera utilisée pour obtenir l'emplacement."
+		"nominatim": "Ainsi, les clés peuvent être non structurées, peuvent contenir des descriptions du lieu et les queries sont traitées de gauche à droite et de droite à gauche dans le cas où le premier échoue. Les virgules sont optionnelles, mais permettent d'améliorer la performance.",
+		"template": "Chaque clé doit être entre `{}`, comme `{city}, {number}`. La chaîne créée sera utilisée pour obtenir l'emplacement depuis {{- link}} sous forme de query libre."
 	},
 	"keyName": "Nom de la clé",
 	"latitude": {
