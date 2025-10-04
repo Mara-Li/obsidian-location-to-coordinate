@@ -7,6 +7,7 @@
 	display: block;
 }
 
+/*noinspection CssNoGenericFontName*/
 .loc-to-coord-settings textarea {
 	width: 20em;
 	height: 100px;
