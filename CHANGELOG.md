@@ -1,3 +1,9 @@
+## [0.0.2](https://github.com/Mara-Li/obsidian-location-to-coordinate/compare/0.0.1...0.0.2) (2025-10-04)
+### Features
+
+* enhance input key descriptions and update template handling for Nominatim queries ([484cc93](https://github.com/Mara-Li/obsidian-location-to-coordinate/commit/484cc938562f5dd558258e6a00b68a52063b8c43))
+* update command descriptions for inserting coordinates in specific folder and improve README ([c1b85c0](https://github.com/Mara-Li/obsidian-location-to-coordinate/commit/c1b85c01f65b02ae0c7b21ca9b3a17b5971775bc))
+
 ## 0.0.1 (2025-10-04)
 ### Features
 
