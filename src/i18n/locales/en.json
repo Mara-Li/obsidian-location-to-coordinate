@@ -42,7 +42,7 @@
 		"placeholder": "address"
 	},
 	"strict": {
-		"desc": "Missing keys in the template will be deleted rather than returning an error.",
+		"desc": "When disabled, missing keys in the template will be deleted rather than returning an error.",
 		"name": "Strict mode"
 	},
 	"template": "Template"

@@ -42,7 +42,7 @@
 		"placeholder": "adresse"
 	},
 	"strict": {
-		"desc": "Les clés manquantes dans le modèle seront effacés plutôt que de renvoyer une erreur.",
+		"desc": "Lorsque cette option est désactivée, les clés manquantes dans le modèle seront supprimées plutôt que de renvoyer une erreur.",
 		"name": "Mode strict"
 	},
 	"template": "Modèle"
