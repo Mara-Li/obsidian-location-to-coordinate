@@ -27,26 +27,28 @@ If a location can’t be resolved (or a template placeholder can’t be replaced
 ### A) Simple input → Simple output
 Frontmatter before:
 
+```md
 ---
 address: "1600 Amphitheatre Parkway, Mountain View, CA"
 ---
-
+```
 Settings:
 - Input keys → Mode: Simple, Key name: `address`
 - Output keys → Mode: Simple, Latitude key: `latitude`, Longitude key: `longitude`
 
 Frontmatter after running the command (example values):
-
+```md
 ---
 address: "1600 Amphitheatre Parkway, Mountain View, CA"
 latitude: 37.42205
 longitude: -122.08410
 ---
-
+```
 
 ### B) Template input (nested) → Simple output
 Frontmatter before:
 
+```md
 ---
 place:
   street: "5 Avenue Anatole France"
@@ -54,6 +56,7 @@ place:
   postcode: "75007"
   country: "France"
 ---
+```
 
 Settings:
 - Input keys → Mode: Template, Template: `{place.street}, {place.city}, {place.postcode}, {place.country}`
@@ -63,6 +66,7 @@ Settings:
 
 Frontmatter after (example values):
 
+```md
 ---
 place:
   street: "5 Avenue Anatole France"
@@ -73,7 +77,7 @@ geo:
   lat: 48.85837
   lon: 2.29448
 ---
-
+```
 
 ### C) Any input → Template output
 Want a single string with both coordinates.
@@ -85,10 +89,11 @@ Settings:
 
 Frontmatter after (example values):
 
+```md
 ---
 coordinates: "48.85837, 2.29448"
 ---
-
+```
 
 ## Settings
 
