@@ -1,6 +1,6 @@
 {
   "name": "location-to-coordinate",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Automatically add the coordinate from a given set of properties, and add it in it.",
   "main": "main.ts",
   "private": true,

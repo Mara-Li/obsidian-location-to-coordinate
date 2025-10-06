@@ -1,7 +1,7 @@
 {
 	"id": "location-to-coordinate",
 	"name": "Geocoder",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"minAppVersion": "1.5.12",
 	"description": "Automatically add the coordinate from a given set of properties, and add it in it.",
 	"author": "Mara-Li",

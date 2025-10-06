@@ -1,3 +1,5 @@
+## [0.0.4](https://github.com/Mara-Li/obsidian-location-to-coordinate/compare/0.0.3...0.0.4) (2025-10-06)
+
 ## [0.0.3](https://github.com/Mara-Li/obsidian-location-to-coordinate/compare/0.0.2...0.0.3) (2025-10-04)
 ### Features
 
