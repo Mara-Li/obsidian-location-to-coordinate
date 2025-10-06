@@ -191,6 +191,15 @@ class SettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					})
 			);
+
+		new Setting(containerEl).setClass("attribution").setName(
+			sanitizeHTMLToDom(
+				i18next.t("attribution", {
+					OpenStreetMap: `<a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a>`,
+					nominatim: `<a href="https://nominatim.org/" target="_blank" rel="noopener">Nominatim</a>`,
+				})
+			)
+		);
 	}
 }
 

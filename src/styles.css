@@ -14,3 +14,13 @@
 	resize: vertical;
 	font-family: var(--font-monospace);
 }
+
+.attribution {
+	text-align: center;
+	margin-top: 1em;
+}
+
+.attribution .setting-item-name {
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+}

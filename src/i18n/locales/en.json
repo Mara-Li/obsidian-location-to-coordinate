@@ -1,4 +1,5 @@
 {
+	"attribution": "© {{- OpenStreetMap}} contributors | Data via {{- nominatim}}",
 	"command": {
 		"insertAtFile": "Enter the coordinates for the current file",
 		"insertInAllFiles": "Enter the coordinates for all files",
