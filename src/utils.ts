@@ -42,7 +42,7 @@ export async function getCoordinate(
 	manifest: PluginManifest
 ): Promise<Coordinate | null> {
 	//use obsidian requestUrl to get the coordinate from nominatim, respecting the rate limit
-	const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&q=${encodeURIComponent(location)}&addressdetails=1&limit=1`;
+	const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&q=${encodeURIComponent(location)}&limit=1`;
 	const response = await runWithRateLimit(() =>
 		requestUrl({
 			url,
